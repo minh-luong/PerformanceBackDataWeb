@@ -1,0 +1,18 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /backdata/public/
+
+# Block hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to /public
+RewriteCond %{THE_REQUEST} /public/ [NC]
+RewriteRule ^ - [F]
+
+# MVC routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
