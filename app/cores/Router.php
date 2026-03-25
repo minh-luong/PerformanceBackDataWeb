@@ -4,11 +4,12 @@ class Router
 {
     private $routes = [];
 
-    public function __construct()
+    public function __construct($handler = null)
     {
-        $this->get('/', function() {
-            // echo "Home";
-        });
+        if($handler !== null)
+        {
+            $this->get('/', $handler);
+        }
     }
 
     protected function addRoute($method, $path, $handler) {

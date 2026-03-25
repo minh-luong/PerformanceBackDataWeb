@@ -3,19 +3,21 @@
 namespace App\Controllers;
 
 use App\Cores\Controller;
+use App\Cores\Helper;
 
 require_once '../app/cores/Controller.php';
+require_once '../app/cores/Helper.php';
 
 class HomeController extends Controller
 {
     public function index()
     {
-        echo "Home Page";
+        Helper::redirect('/login');
     }
 
-    public function show($id, $uid)
+    public function showDashboard()
     {
-        echo "Showing item with ID: $id, User ID: $uid";
+        $this->view('dashboard');
     }
 }
 ?>
