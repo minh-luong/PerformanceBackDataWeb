@@ -1,27 +1,27 @@
+<?php use App\Cores\Helper; ?>
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>Back Data Management</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="assets/fonts/iconic/css/material-design-iconic-font.min.css">
-	<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="assets/css/login.css">
-	<link href="assets/css/mystyle.css" rel="stylesheet">
-	<link href="assets/css/google.font.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?= Helper::fullPath('/assets/fonts/iconic/css/material-design-iconic-font.min.css') ?>">
+	<link href="<?= Helper::fullPath('/assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?= Helper::fullPath('/assets/css/login.css') ?>">
+	<link href="<?= Helper::fullPath('/assets/css/mystyle.css') ?>" rel="stylesheet">
+	<link href="<?= Helper::fullPath('/assets/css/google.font.css') ?>" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
 	<!-- <link href="assets/css/sb-admin-2.min.css" rel="stylesheet"> -->
-	<script src="assets/js/my_func.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+	<script src="<?= Helper::fullPath('/assets/js/my_func.js') ?>"></script>
+	<script src="<?= Helper::fullPath('/assets/vendor/tinymce/tinymce.min.js') ?>"></script>
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100" style="background-color: #FFF;">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST" action="./api/login">
-					<img class="login100-form-logo" src="assets/img/books.png" >
+				<form class="login100-form validate-form" method="POST" action="<?= Helper::fullPath('/api/login') ?>">
+					<img class="login100-form-logo" src="<?= Helper::fullPath('/assets/img/books.png') ?>" >
 
 					<span class="login100-form-title p-b-34 p-t-27">
 						Login to the system

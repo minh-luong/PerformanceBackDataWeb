@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Cores;
+
+require_once '../app/cores/Helper.php';
+
 class Controller
 {
+    private $db;
+
     public function __construct()
     {
-        // echo "Controller class is loaded.";
+        //
     }
 
     public function view($view, $data = [])
@@ -19,8 +24,10 @@ class Controller
 
     public function model($model)
     {
+        $parts = explode('\\', $model);
+        $modelClassName = end($parts);
         // Include the model file
-        require_once "../app/models/$model.php";
+        require_once "../app/models/$modelClassName.php";
 
         // Instantiate the model class
         return new $model();

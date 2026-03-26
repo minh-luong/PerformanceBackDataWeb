@@ -2,6 +2,7 @@
 use App\Cores\Router;
 
 require_once '../config/constants.php';
+require_once '../app/cores/Helper.php';
 require_once '../app/cores/Router.php';
 
 $router = new Router();
