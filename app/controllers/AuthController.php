@@ -42,7 +42,9 @@ class AuthController extends Controller
             Helper::redirect('/dashboard');
             exit();
         } else {
-            $this->view('login', ['error' => 'Invalid username or password']);
+            $this->view('login', [
+                'error' => 'Invalid username or password'
+            ]);
         }
     }
 

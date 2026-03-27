@@ -43,31 +43,34 @@ class Router
                 array_shift($matches); // remove full match
                 // echo "Matched route: " . $route['path'] . " with parameters: " . implode(', ', $matches) . "\n";
 
-                if (is_string($route['handler']) && strpos($route['handler'], '@') !== false) {
-                    list($controller, $method) = explode('@', $route['handler']);
-
-                    // middlewares
-                    foreach($route['middlewares'] as $middleware) {
-                        require_once "../app/middlewares/$middleware.php";
-                        $middlewareClass = "App\\Middlewares\\$middleware";
-                        if (class_exists($middlewareClass)) {
-                            $middlewareInstance = new $middlewareClass();
-                            if (method_exists($middlewareInstance, 'handle')) {
-                                $middlewareInstance->handle();
-                            } else {
-                                http_response_code(500);
-                                echo "Middleware $middleware does not have a handle method";
-                                return;
-                            }
+                // middlewares
+                foreach($route['middlewares'] as $middleware) {
+                    require_once "../app/middlewares/$middleware.php";
+                    $middlewareClass = "App\\Middlewares\\$middleware";
+                    if (class_exists($middlewareClass)) {
+                        $middlewareInstance = new $middlewareClass();
+                        if (method_exists($middlewareInstance, 'handle')) {
+                            $middlewareInstance->handle();
                         } else {
                             http_response_code(500);
-                            echo "Middleware class $middlewareClass not found";
+                            echo "Middleware $middleware does not have a handle method";
                             return;
                         }
+                    } else {
+                        http_response_code(500);
+                        echo "Middleware class $middlewareClass not found";
+                        return;
                     }
+                }
 
-                    require_once "../app/controllers/$controller.php";
-                    $controllerClass = "App\\Controllers\\$controller";
+                // controller
+                if (is_array($route['handler'])) {
+                    [$controllerClass, $method] = $route['handler'];
+                   
+                    $parts = explode('\\', $controllerClass);
+                    $controllerClassName = end($parts);
+                    require_once "../app/controllers/$controllerClassName.php";
+
                     if (class_exists($controllerClass)) {
                         $controllerInstance = new $controllerClass();
                         if (method_exists($controllerInstance, $method)) {
