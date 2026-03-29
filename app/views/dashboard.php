@@ -32,37 +32,20 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-    <li class="nav-item">
-    <a class="nav-link" href="?site=dirview&itemid=root">
-        <i class="fa fa-folder"></i>
-        <span>My folders</span></a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="?site=dirview&itemid=share">
-        <i class="fa fa-share"></i>
-        <span>Share with me</span></a>
-    </li>
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
-    <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#createFolderModal">
-        <i class="fa fa-folder"></i>
-        <span>Create Folder</span></a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#uploadFolderModal">
-        <i class="fa fa-upload"></i>
-        <span>Upload Folder</span></a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#uploadFileModal">
-        <i class="fa fa-upload"></i>
-        <span>Upload Files</span></a>
-    </li>
+    <?php
+      foreach ($menuItems as $item) { ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= Helper::fullPath($item['url']) ?>">
+          <i class="fa fa-folder"></i>
+          <span><?= $item['label'] ?></span></a>
+      </li>
+    <?php 
+      } ?>
+    
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
+    <!-- <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+    </div> -->
     </ul>
     <!-- End of Sidebar -->
     <!-- Content Wrapper -->
@@ -121,7 +104,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $username ?></span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $fullname ?></span>
             <img class="img-profile rounded-circle" src="assets/img/books.png">
             </a>
             <!-- Dropdown - User Information -->

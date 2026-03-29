@@ -4,20 +4,22 @@ namespace App\Controllers;
 
 use App\Cores\Controller;
 use App\Cores\Helper;
-use App\Models\Account;
+use App\Cores\Auth;
+use App\Models\User;
 
 require_once '../app/cores/Controller.php';
+require_once '../app/cores/Auth.php';
 
 class AuthController extends Controller
 {
-    private Account $userModel;
+    private User $userModel;
 
     public function __construct()
     {
         if(session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $this->userModel = $this->model(Account::class);
+        $this->userModel = $this->model(User::class);
     }
 
     public function loginPage()
@@ -33,12 +35,7 @@ class AuthController extends Controller
         $user = $this->userModel->findByUsername($username);
 
         if ($user && $user['password'] === Helper::hashPassword($user['uid'], $password)) {
-            if(session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            $_SESSION['uid'] = $user['uid'];
-            $_SESSION['username'] = $user['username'];
+            Auth::attempt($user);
             Helper::redirect('/dashboard');
             exit();
         } else {
@@ -50,7 +47,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        session_destroy();
+        Auth::logout();
         Helper::redirect('/login');
     }
 }

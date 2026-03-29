@@ -5,7 +5,7 @@ use App\Cores\Database;
 
 require_once '../app/cores/Database.php';
 
-class Account 
+class User 
 {
     private $db;
 
@@ -16,7 +16,7 @@ class Account
 
     public function findByUsername($username)
     {
-        return $this->db->fetch("SELECT * FROM accounts WHERE username = ?", [$username]);
+        return $this->db->fetch("SELECT * FROM users WHERE username = ?", [$username]);
     }
 }
 ?>

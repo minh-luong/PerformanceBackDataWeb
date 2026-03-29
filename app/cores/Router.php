@@ -45,10 +45,12 @@ class Router
 
                 // middlewares
                 foreach($route['middlewares'] as $middleware) {
-                    require_once "../app/middlewares/$middleware.php";
-                    $middlewareClass = "App\\Middlewares\\$middleware";
-                    if (class_exists($middlewareClass)) {
-                        $middlewareInstance = new $middlewareClass();
+                    $parts = explode('\\', $middleware);
+                    $middlewareClassName = end($parts);
+                    require_once "../app/middlewares/$middlewareClassName.php";
+
+                    if (class_exists($middleware)) {
+                        $middlewareInstance = new $middleware();
                         if (method_exists($middlewareInstance, 'handle')) {
                             $middlewareInstance->handle();
                         } else {
@@ -58,7 +60,7 @@ class Router
                         }
                     } else {
                         http_response_code(500);
-                        echo "Middleware class $middlewareClass not found";
+                        echo "Middleware class $middlewareClassName not found";
                         return;
                     }
                 }
