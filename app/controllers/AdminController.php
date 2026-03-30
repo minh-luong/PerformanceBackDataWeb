@@ -13,32 +13,18 @@ class AdminController extends Controller
 {
     public function manageUserPage()
     {
-        $menuItems = [];
-        if(Auth::role() == 'admin')
-        {
-            $menuItems[] = ['label' => 'Manage Users', 'url' => '/admin/users'];
-        }
-        $menuItems[] = ['label'=> 'My back data','url'=> '/my-data'];
-
         $users = $this->model(User::class)->getAll();
 
         $this->view('admin/user/manage_user', [
-            'menuItems' => $menuItems,
+            'menuItems' => Auth::menuItems(),
             'users' => $users
         ]);
     }
 
     public function createUserPage()
     {
-        $menuItems = [];
-        if(Auth::role() == 'admin')
-        {
-            $menuItems[] = ['label' => 'Manage Users', 'url' => '/admin/users'];
-        }
-        $menuItems[] = ['label'=> 'My back data','url'=> '/my-data'];
-
         $this->view('admin/user/add_user', [
-            'menuItems' => $menuItems
+            'menuItems' => Auth::menuItems()
         ]);
     }
 

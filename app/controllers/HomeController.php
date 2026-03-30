@@ -17,16 +17,11 @@ class HomeController extends Controller
 
     public function showDashboard()
     {
-        $menuItems = [];
-        if(Auth::role() == 'admin')
-        {
-            $menuItems[] = ['label' => 'Manage Users', 'url' => '/admin/users'];
-        }
-        $menuItems[] = ['label'=> 'My back data','url'=> '/my-data'];
+        
 
         $this->view('dashboard', [
             'fullname' => Auth::fullname(),
-            'menuItems' => $menuItems
+            'menuItems' => Auth::menuItems()
         ]);
     }
 }

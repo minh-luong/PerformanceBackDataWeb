@@ -45,6 +45,50 @@ class AuthController extends Controller
         }
     }
 
+    public function changePasswordPage()
+    {
+        $this->view('user/change_password', [
+            'menuItems' => Auth::menuItems()
+        ]);
+    }
+
+    public function changePassword()
+    {
+        $currentPassword = $_POST['old_password'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmNewPassword = $_POST['confirm_new_password'] ?? '';
+
+        if ($newPassword !== $confirmNewPassword) {
+            $this->view('user/change_password', [
+                'menuItems' => Auth::menuItems(),
+                'error' => 'New password and confirmation do not match'
+            ]);
+            return;
+        }
+
+        if(strlen($newPassword) < 8) {
+            $this->view('user/change_password', [
+                'menuItems' => Auth::menuItems(),
+                'error' => 'New password must be at least 8 characters long'
+            ]);
+            return;
+        }
+
+        $user = $this->userModel->findByUsername(Auth::username());
+
+        if ($user && $user['password'] === Helper::hashPassword($user['uid'], $currentPassword)) {
+            $this->userModel->update($user['username'], $newPassword, $user['fullname'], $user['role']);
+            Helper::redirect('/dashboard');
+            exit();
+        } 
+        else {
+            $this->view('user/change_password', [
+                'menuItems' => Auth::menuItems(),
+                'error' => 'Current password is incorrect'
+            ]);
+        }
+    }
+
     public function logout()
     {
         Auth::logout();

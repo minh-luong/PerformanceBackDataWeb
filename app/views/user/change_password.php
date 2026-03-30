@@ -19,12 +19,12 @@
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <?php require_once __DIR__. "/../../layouts/sidebar.php" ?>
+    <?php require_once __DIR__. "/../layouts/sidebar.php" ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
       <div id="content">
-        <?php require_once __DIR__."/../../layouts/topbar.php" ?>
+        <?php require_once __DIR__."/../layouts/topbar.php" ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Content Row -->
@@ -33,31 +33,36 @@
             <div class="col-5">
               <div class="card shadow rounded-3">
                 <div class="card-header bg-primary text-white">
-                  <h5 class="mb-0">Create New User</h5>
+                  <h5 class="mb-0">Change my password</h5>
                 </div>
                 <div class="card-body">
-                  <form method="POST" action="<?= Helper::fullPath('/api/admin/users/create') ?>">
+                  <form method="POST" action="<?= Helper::fullPath('/api/change-password') ?>">
                     <!-- Username -->
                     <div class="mb-4">
-                      <label class="form-label">Username</label>
-                      <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                      <label class="form-label">Old password</label>
+                      <input type="password" name="old_password" class="form-control" placeholder="Enter old password" required>
                     </div>
-                    <!-- Fullname -->
+                    <!-- New Password -->
                     <div class="mb-4">
-                      <label class="form-label">Fullname</label>
-                      <input type="text" name="fullname" class="form-control" placeholder="Enter fullname" required>
+                      <label class="form-label">New password</label>
+                      <input type="password" name="new_password" class="form-control" placeholder="Enter new password" required>
                     </div>
-                    <!-- Role -->
-                    <div class="mb-5">
-                      <label class="form-label">Role</label>
-                      <select name="role" class="form-control form-select">
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                      </select>
+                    <!-- Confirm New Password -->
+                    <div class="mb-4">
+                      <label class="form-label">Confirm new password</label>
+                      <input type="password" name="confirm_new_password" class="form-control" placeholder="Confirm new password" required>
                     </div>
+                    <!-- Error Message -->
+                    <?php if(isset($error)): ?>
+                      <div class="mb-4">
+                        <div class="alert alert-danger" role="alert">
+                          <?= $error ?>
+                        </div>
+                      </div>
+                    <?php endif ?>
                     <!-- Buttons -->
                     <div class="d-flex justify-content-center">
-                      <button type="submit" class="btn btn-primary col-3">Create</button>
+                      <button type="submit" class="btn btn-primary col-3">Change Password</button>
                     </div>
                   </form>
                 </div>

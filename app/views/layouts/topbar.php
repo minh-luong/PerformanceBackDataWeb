@@ -63,7 +63,7 @@ use App\Cores\Auth;
         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
         Personal Info
     </a>
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePassModal">
+    <a class="dropdown-item" href="<?= Helper::fullPath('/change-password') ?>">
         <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
         Change password
     </a>

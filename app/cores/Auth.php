@@ -67,5 +67,17 @@ class Auth
         unset($_SESSION['user']);
         session_destroy();
     }
+
+    public static function menuItems()
+    {
+        $menuItems = [];
+        if(Auth::role() == 'admin')
+        {
+            $menuItems[] = ['label' => 'Manage Users', 'url' => '/admin/users'];
+        }
+        $menuItems[] = ['label'=> 'My back data','url'=> '/my-data'];
+
+        return $menuItems;
+    }
 }
 ?>
