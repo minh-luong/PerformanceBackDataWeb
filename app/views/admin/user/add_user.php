@@ -19,36 +19,48 @@
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <?php require_once __DIR__."/layouts/sidebar.php" ?>
+    <?php require_once __DIR__. "/../../layouts/sidebar.php" ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
       <div id="content">
-        <?php require_once __DIR__."/layouts/topbar.php" ?>
+        <?php require_once __DIR__."/../../layouts/topbar.php" ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Content Row -->
           <div class="row">
-            <div class="col-12">
-              <h5 style="display: block; font-weight: bold; margin-left: 50px; margin-top: 50px; margin-bottom: 20px;">
-                Title
-              </h5>
-
-              <div style="display: block; width: 90%; height: 75vh; margin-left: 50px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Last modified</th>
-                      </tr>
-                    </thead>
-                    <tbody id="dirTableBody">
-                      
-                    </tbody>
-                  </table>
+            <div class="col-3"></div>
+            <div class="col-5">
+              <div class="card shadow rounded-3">
+                <div class="card-header bg-primary text-white">
+                  <h5 class="mb-0">Create New User</h5>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="/admin/users/store">
+                    <!-- Username -->
+                    <div class="mb-3">
+                      <label class="form-label">Username</label>
+                      <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                    </div>
+                    <!-- Fullname -->
+                    <div class="mb-3">
+                      <label class="form-label">Fullname</label>
+                      <input type="text" name="fullname" class="form-control" placeholder="Enter fullname" required>
+                    </div>
+                    <!-- Role -->
+                    <div class="mb-3">
+                      <label class="form-label">Role</label>
+                      <select name="role" class="form-select">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                      <a href="/admin/users" class="btn btn-secondary">Back</a>
+                      <button type="submit" class="btn btn-primary">Create User</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

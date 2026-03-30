@@ -4,6 +4,7 @@ create table users (
     password varchar(200) not null,
     fullname varchar(100) not null,
     role varchar(20) default 'user',
+    status varchar(20) default 'active',
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
 );

@@ -19,34 +19,51 @@
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <?php require_once __DIR__."/layouts/sidebar.php" ?>
+    <?php require_once __DIR__. "/../../layouts/sidebar.php" ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
       <div id="content">
-        <?php require_once __DIR__."/layouts/topbar.php" ?>
+        <?php require_once __DIR__."/../../layouts/topbar.php" ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Content Row -->
           <div class="row">
             <div class="col-12">
-              <h5 style="display: block; font-weight: bold; margin-left: 50px; margin-top: 50px; margin-bottom: 20px;">
-                Title
-              </h5>
+              <div class="row" style="margin-top: 50px; margin-bottom: 20px;">
+                <div class="col-10 d-flex align-items-center">
+                  <h5 style="font-weight: bold; margin-left: 50px;">
+                    User management
+                  </h5>
+                </div>
+                <div class="col-2">
+                  <a href="<?= Helper::fullPath('/admin/users/add') ?>"><button class="btn btn-success"><b>+</b> Create user</button></a>
+                </div>
+              </div>
 
               <div style="display: block; width: 90%; height: 75vh; margin-left: 50px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Last modified</th>
+                        <th scope="col" class="col-1">No.</th>
+                        <th scope="col" class="col-3">Username</th>
+                        <th scope="col" class="col-3">Fullname</th>
+                        <th scope="col" class="col-1">Status</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
-                    <tbody id="dirTableBody">
-                      
+                    <tbody>
+<?php               $userNo = 1;
+                    foreach($users as $user): ?>
+                      <tr>
+                        <td><?= $userNo++ ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td><?= $user['fullname'] ?></td>
+                        <td><?= $user['status'] ?></td>
+                        <td></td>
+                      </tr>
+<?php               endforeach; ?>
                     </tbody>
                   </table>
                 </div>
