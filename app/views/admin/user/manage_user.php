@@ -37,11 +37,11 @@
                   </h5>
                 </div>
                 <div class="col-2">
-                  <a href="<?= Helper::fullPath('/admin/users/add') ?>"><button class="btn btn-success"><b>+</b> Create user</button></a>
+                  <a href="<?= Helper::fullPath('/admin/users/create') ?>" class="btn btn-success"><b>+</b> Create user</a>
                 </div>
               </div>
 
-              <div style="display: block; width: 90%; height: 75vh; margin-left: 50px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
+              <div style="display: block; width: 90%; height: 70vh; margin-left: 50px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
                 <div class="table-responsive">
                   <table class="table">
                     <thead>

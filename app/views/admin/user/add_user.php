@@ -36,29 +36,29 @@
                   <h5 class="mb-0">Create New User</h5>
                 </div>
                 <div class="card-body">
-                  <form method="POST" action="/admin/users/store">
+                  <form method="POST" action="<?= Helper::fullPath('/api/admin/users/create') ?>">
                     <!-- Username -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label class="form-label">Username</label>
                       <input type="text" name="username" class="form-control" placeholder="Enter username" required>
                     </div>
                     <!-- Fullname -->
-                    <div class="mb-3">
+                    <div class="mb-4">
                       <label class="form-label">Fullname</label>
                       <input type="text" name="fullname" class="form-control" placeholder="Enter fullname" required>
                     </div>
                     <!-- Role -->
-                    <div class="mb-3">
+                    <div class="mb-5">
                       <label class="form-label">Role</label>
-                      <select name="role" class="form-select">
+                      <select name="role" class="form-control form-select">
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                       </select>
                     </div>
                     <!-- Buttons -->
                     <div class="d-flex justify-content-between">
-                      <a href="/admin/users" class="btn btn-secondary">Back</a>
-                      <button type="submit" class="btn btn-primary">Create User</button>
+                      <a href="<?= Helper::fullPath('/admin/users') ?>" class="btn btn-secondary col-2">Back</a>
+                      <button type="submit" class="btn btn-primary col-2">Create</button>
                     </div>
                   </form>
                 </div>

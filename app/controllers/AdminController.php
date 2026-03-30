@@ -4,13 +4,14 @@ namespace App\Controllers;
 
 use App\Cores\Controller;
 use App\Cores\Auth;
+use App\Cores\Helper;
 use App\Models\User;
 
 require_once '../app/cores/Controller.php';
 
 class AdminController extends Controller
 {
-    public function index()
+    public function manageUserPage()
     {
         $menuItems = [];
         if(Auth::role() == 'admin')
@@ -27,7 +28,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function addPage()
+    public function createUserPage()
     {
         $menuItems = [];
         if(Auth::role() == 'admin')
@@ -39,6 +40,12 @@ class AdminController extends Controller
         $this->view('admin/user/add_user', [
             'menuItems' => $menuItems
         ]);
+    }
+
+    public function createUser()
+    {
+        $this->model(User::class)->create($_POST['username'], '12345678', $_POST['fullname'], $_POST['role']);
+        Helper::redirect('/admin/users');
     }
 }
 ?>
