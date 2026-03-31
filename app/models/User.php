@@ -9,7 +9,7 @@ require_once '../app/cores/Database.php';
 
 class User 
 {
-    private $db;
+    private Database $db;
 
     public function __construct()
     {
