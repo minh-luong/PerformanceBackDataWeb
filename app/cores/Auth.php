@@ -75,7 +75,7 @@ class Auth
         {
             $menuItems[] = ['label' => 'Manage Users', 'url' => '/admin/users'];
         }
-        $menuItems[] = ['label'=> 'My back data','url'=> '/data'];
+        $menuItems[] = ['label'=> 'Groups','url'=> '/groups'];
 
         return $menuItems;
     }

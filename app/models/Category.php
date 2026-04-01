@@ -14,9 +14,9 @@ class Category
         $this->db = Database::getInstance();
     }
 
-    public function getAll()
+    public function getAllByGroup($group_id)
     {
-        return $this->db->fetchAll("SELECT * FROM categories");
+        return $this->db->fetchAll("SELECT * FROM categories WHERE group_id = ?", [$group_id]);
     }
 }
 ?>

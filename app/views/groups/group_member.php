@@ -30,36 +30,55 @@
           <!-- Content Row -->
           <div class="row">
             <div class="col-12">
-              <div class="row" style="margin-bottom: 20px;">
+              <div class="row" style="margin-bottom: 10px;">
                 <div class="col-10 d-flex align-items-center">
                   <h5 style="font-weight: bold; margin-left: 10px;">
-                    My back data
+                    <?= $group['name'] ?>
                   </h5>
                 </div>
               </div>
+              <div style="margin-left: 10px; margin-right: 50px; margin-bottom: 20px;">
+                <p><?= $group['description'] ?></p>
+              </div>
 
-              <div style="display: block; width: 100%; height: 70vh; margin-left: 10px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
+              <div class="row" style="margin-left: 10px; margin-bottom: 40px;">
+                <div class="d-flex align-items-center" style="margin-right: 20px;">
+                  Select month:
+                </div>
+<?php         for($month = 1; $month <= 12; $month++): ?>
+                <div class="d-flex align-items-center" style="margin-right: 20px;">
+                  <a href="<?= Helper::fullPath('/reports/' . $group['group_id'] . '/' . $month) ?>" class="link"><?= $month . '/' . $group['year'] ?></a>
+                </div>
+<?php         endfor ?>                
+              </div>
+
+              <div class="col-10 d-flex align-items-center">
+                <h5 style="font-weight: bold;">
+                  Member list
+                </h5>
+              </div>
+              <div style="display: block; width: 100%; height: 62vh; margin-left: 10px; margin-right: 50px; overflow-y: scroll; background: #fff; border: solid #eee;">
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col" class="col-1">Month</th>
-<?php                   foreach($categories as $category): ?>
-                        <th scope="col"><?= $category['name'] ?></th>
-<?php                   endforeach ?>                 
-                        <th scope="col" class="col-1"></th>
+                        <th scope="col" class="col-1">No.</th>
+                        <th scope="col" class="col-3">Name</th>
+                        <th scope="col" class="col-1">Role</th>
+                        <th scope="col" class="col-7"></th>
                       </tr>
                     </thead>
                     <tbody>
-<?php               for($month = 1; $month <=12; $month++): ?>
+<?php               
+                    $no = 1;
+                    foreach($members as $member): ?>
                       <tr>
-                        <td><?= $month . '/' . $data[$month]['year'] ?></td>
-<?php                  foreach($categories as $category): ?>
-                        <td><?= $data[$month]['content'][$category['category_id']] ?? '' ?></td>
-<?php                  endforeach ?>
-                        <td><a href="<?= Helper::fullPath('/data/edit/'.$data[$month]['year'].'/'.$month) ?>" class="btn btn-sm btn-primary">Edit</a></td>                           
+                        <td><?= $no++ ?></td>
+                        <td><?= $member['fullname'] ?></td>
+                        <td><?= $member['role'] ?></td>
+                        <td></td>
                       </tr>
-<?php               endfor ?>
+<?php               endforeach ?>
                     </tbody>
                   </table>
                 </div>
